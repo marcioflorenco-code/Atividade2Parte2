@@ -32,3 +32,36 @@ console.log(usuarioRecuperado);
 }
 ```
 ****
+**2. Dado o JSON abaixo, extraia todos os emails e concatene-os em uma string separada por vírgulas:**
+```js
+const jsonString = `{
+"usuarios": [
+{"nome": "Carlos", "email": "carlos@email.com"},
+{"nome": "Maria", "email": "maria@email.com"},
+{"nome": "João", "email": "joao@email.com"}
+]
+}`;
+```
+*primeiro vamos converter o texto JSON em objeto JavaScript*
+```js
+const dados = JSON.parse(jsonString);
+```
+*por fim concatenar os emails em uma única string separada por vírgulas*
+```js
+const emailsConcatenados = emails.join(", ");
+```
+*onde por final o codigo ficara assim*
+```js
+const jsonString = `{
+  "usuarios": [
+    {"nome": "Carlos", "email": "carlos@email.com"},
+    {"nome": "Maria", "email": "maria@email.com"},
+    {"nome": "João", "email": "joao@email.com"}
+  ]
+}`;
+
+const dados = JSON.parse(jsonString);
+const emailsConcatenados = dados.usuarios.map(u => u.email).join(", ");
+console.log(emailsConcatenados);//mostrarar (carlos@email.com, maria@email.com, joao@email.com)
+```
+****

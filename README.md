@@ -46,6 +46,10 @@ const jsonString = `{
 ```js
 const dados = JSON.parse(jsonString);
 ```
+*extrair os e-mails*
+```js
+const emails = dados.usuarios.map(usuario => usuario.email);
+```
 *por fim concatenar os emails em uma única string separada por vírgulas*
 ```js
 const emailsConcatenados = emails.join(", ");

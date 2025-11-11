@@ -94,7 +94,7 @@ const resultado = produtosCaros(produtosJSON);
 console.log(resultado);
 ```
 ****
-**Escreva uma função que formate um objeto de endereço em uma string legível usando template strings:**
+**4. Escreva uma função que formate um objeto de endereço em uma string legível usando template strings:**
 ```js
 const endereco = {
 rua: "Av. Paulista",
@@ -121,3 +121,49 @@ const endereco = {
 console.log(formatarEndereco(endereco)); // saida(Av. Paulista, 1000 - São Paulo - CEP: 01310-100)
 ```
 ****
+**5. Crie uma função que processe uma lista de pedidos e retorne um resumo**
+```js
+const pedidosJSON = `{
+"pedidos": [
+{"id": 1, "cliente": "Fernanda", "total": 120.50, "status": "entregue"},
+{"id": 2, "cliente": "Roberto", "total": 89.90, "status": "processando"},
+{"id": 3, "cliente": "Carla", "total": 45.30, "status": "entregue"}
+]
+}`;
+```
+// Função deve retornar: "2 pedidos entregues, 1 em processamento. Valor total: R$
+255,70"
+*vamos para funçao*
+```js
+function resumoPedidos(jsonString) {
+  const dados = JSON.parse(jsonString); // Converte JSON em objeto
+  
+  const entregues = dados.pedidos.filter(p => p.status === "entregue").length;
+  const processando = dados.pedidos.filter(p => p.status === "processando").length;
+  
+  const total = dados.pedidos.reduce((soma, p) => soma + p.total, 0);
+  
+  return `${entregues} pedidos entregues, ${processando} em processamento. Valor total: R$ ${total.toFixed(2).replace('.', ',')}`;
+}
+
+const pedidosJSON = `{
+  "pedidos": [
+    {"id": 1, "cliente": "Fernanda", "total": 120.50, "status": "entregue"},
+    {"id": 2, "cliente": "Roberto", "total": 89.90, "status": "processando"},
+    {"id": 3, "cliente": "Carla", "total": 45.30, "status": "entregue"}
+  ]
+}`;
+
+console.log(resumoPedidos(pedidosJSON)); //Saída:2 pedidos entregues, 1 em processamento. Valor total: R$ 255,70
+
+```
+*como funciona :*
+JSON.parse() → transforma o texto JSON em objeto.
+filter() → conta quantos pedidos têm cada status.
+reduce() → soma os valores totais dos pedidos.
+toFixed(2) → formata o número com 2 casas decimais.
+replace('.', ',') → troca o ponto por vírgula para o formato brasileiro.
+****
+
+
+

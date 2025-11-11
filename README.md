@@ -69,3 +69,55 @@ const emailsConcatenados = dados.usuarios.map(u => u.email).join(", ");
 console.log(emailsConcatenados);//mostrarar (carlos@email.com, maria@email.com, joao@email.com)
 ```
 ****
+**3. Crie uma função que recebe uma string JSON de produtos e retorna apenas osnomes dos produtos com preço acima de R$ 50:**
+```js
+const produtosJSON = `{
+"produtos": [
+{"nome": "Mouse", "preco": 25.90},
+{"nome": "Teclado", "preco": 89.90},
+{"nome": "Monitor", "preco": 450.00},
+{"nome": "Cabo USB", "preco": 15.00}
+]
+}`;
+```
+*vamos criar a funçao*
+```js
+function produtosCaros(jsonString) {
+  const dados = JSON.parse(jsonString);  // Converte JSON em objeto
+  const nomes = dados.produtos           // Acessa o array de produtos
+    .filter(p => p.preco > 50)           // Filtra produtos com preço > 50
+    .map(p => p.nome);                   // Pega só os nomes
+  return nomes;
+}
+
+const resultado = produtosCaros(produtosJSON);
+console.log(resultado);
+```
+****
+**Escreva uma função que formate um objeto de endereço em uma string legível usando template strings:**
+```js
+const endereco = {
+rua: "Av. Paulista",
+numero: 1000,
+cidade: "São Paulo",
+cep: "01310-100"
+};
+```
+// Resultado esperado: "Av. Paulista, 1000 - São Paulo - CEP: 01310-100
+
+*vamos para a funçao*
+```js
+function formatarEndereco(endereco) {
+  return `${endereco.rua}, ${endereco.numero} - ${endereco.cidade} - CEP: ${endereco.cep}`;
+}
+
+const endereco = {
+  rua: "Av. Paulista",
+  numero: 1000,
+  cidade: "São Paulo",
+  cep: "01310-100"
+};
+
+console.log(formatarEndereco(endereco)); // saida(Av. Paulista, 1000 - São Paulo - CEP: 01310-100)
+```
+****
